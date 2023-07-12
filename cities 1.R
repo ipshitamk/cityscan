@@ -311,7 +311,7 @@ for (city in city_prefixes) {
 lc_val$pr <- c('', 'Tree cover', 'Grassland', 'Cropland', 'Built-up',
                'Bare', 'Herbaceous wetland')
 lc_col$pr <- c('transparent', '#397e48', '#88af52', '#e49634', '#c4281b',
-                    '#a59b8f', '#7c85c9')
+                    '#a59b8f', '#7c85c10')
 
 
 # Layers list ------------------------------------
