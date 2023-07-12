@@ -312,6 +312,8 @@ lc_val$pr <- c('', 'Tree cover', 'Grassland', 'Cropland', 'Built-up',
                'Bare', 'Herbaceous wetland')
 lc_col$pr <- c('transparent', '#397e48', '#88af52', '#e49634', '#c4281b',
                     '#a59b8f', '#7c85c10')
+lc_col2$pr <- c('transparent', '#397e48', '#88af52', '#e49634', '#c4281b',
+               '#a59b8f', '#7c85c10')
 
 
 # Layers list ------------------------------------
