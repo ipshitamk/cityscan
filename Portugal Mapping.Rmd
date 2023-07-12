@@ -1,0 +1,99 @@
+---
+title: "Portugal mapping"
+author: "Ipshita Karmakar"
+date: "4/24/2023"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+```{r}
+setwd("/Users/ipshitakarmakar/Desktop/MIT Coursework/Spring 2023/Janelle RA")
+```
+
+```{r}
+getwd()
+```
+
+```{r}
+library(sf)
+library(RColorBrewer)
+library(leaflet)
+library(dplyr)
+library(spdep)
+library(spatialreg)
+library(tidycensus)
+library(mapview)
+library(tidyr)
+```
+
+```{r}
+# install.packages("shiny")
+```
+
+```{r}
+Pvar <- read.csv("/Users/ipshitakarmakar/Desktop/MIT Coursework/Spring 2023/Janelle RA/VariablesMAP.csv")
+```
+
+```{r}
+Pvar <- na.omit(Pvar)
+```
+
+```{r}
+points = st_as_sf(Pvar, coords = c("longitude", "latitude"), crs = 4326)
+Year <- mapview(points, zcol = "Year.of.adhesion")
+Year
+```
+
+```{r}
+html_fl = tempfile(fileext = ".html")
+mapshot(Year, url = html_fl)
+  browseURL(html_fl)
+```
+
+```{r}
+Urb <- mapview(points, zcol="degree.of.urbanisation")
+Urb
+```
+```{r}
+urb_fl = tempfile(fileext = ".html")
+mapshot(Urb, url = urb_fl)
+  browseURL(urb_fl)
+```
+
+```{r}
+Pop <- mapview(points, cex="population.adhesion.year", legend = T, layer.name = "population.adhesion.year")
+Pop
+```
+```{r}
+library(RColorBrewer)
+Area <- mapview(points, cex="area", legend = T, layer.name = "area",col.regions = "green")
+Area
+```
+
+```{r}
+HDD<- mapview(points, cex= "Heating.Degree.Days..HDD.",layer.name = "Heating.Degree.Days..HDD.",col.regions = "red")
+HDD
+```
+
